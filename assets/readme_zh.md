@@ -1,59 +1,69 @@
 [English](https://github.com/Sunrepe/AoPSFT)/中文
 
-## AoPSFT介绍:
+---
+
+## AoPSFT 介绍 🚀
 
 ![AoPSFT](https://github.com/Sunrepe/AoPSFT/blob/main/assets/aopsft.png)
 
-1, 思想创新
+### 1. 思想创新 💡
 
-- 受到论文[rrde](https://ieeexplore.ieee.org/abstract/document/10650094)启发,在LLM推理之前先进行plan, 充分利用LLM本身的长序列规划能力. 
+* 受到论文 [rrde](https://ieeexplore.ieee.org/abstract/document/10650094) 启发，我们在大语言模型（LLM）推理之前引入了规划（plan）机制，充分发挥LLM在长序列任务中的规划能力。
 
-- 受到论文[eto](https://arxiv.org/abs/2403.02502)启发, 实现了步骤级别的COT 推理, 增强了Agent推理可解释性,正确性与效率.
+* 借鉴论文 [eto](https://arxiv.org/abs/2403.02502) 的思路，实现了步骤级别的 Chain-of-Thought（CoT）推理，大幅提升了Agent的可解释性、正确性与推理效率。
 
-2, 算法创新
+### 2. 算法创新 ⚙️
 
-- 本文实现了multi-turn级别的LLM微调训练, 也就是可以在trajectory进行算法优化.
-- 文本对单条episode中的不同step赋予了不同的重要性, 实现了具有重要性加权的损失优化.
-- 感谢[openrlhf](openrlhf/openrlhf at main · OpenRLHF/OpenRLHF), 我们的代码在其代码库上修改后实现.
+* 本项目支持多轮交互（multi-turn）级别的LLM微调训练，可在整个trajectory（行为轨迹）上进行算法优化。
 
+* 针对单个episode中的不同step，赋予了不同的重要性权重，从而实现了重要性加权的损失优化机制。
 
+* 特别感谢 [openrlhf](https://github.com/OpenRLHF/OpenRLHF)，本项目代码基于其代码库进行修改与扩展。
 
-## Setup
+---
 
-### 1, Python env
+## 环境配置 🛠️
 
-请参考[openrlhf](openrlhf/openrlhf at main · OpenRLHF/OpenRLHF)配置基本环境
+### 1. Python 环境 🐍
 
-### 2, Game env
+请参考 [openrlhf](https://github.com/OpenRLHF/OpenRLHF) 的说明完成基础环境配置。
 
-通过`pip install scienceworld`安装环境
+### 2. 游戏环境 🎮
 
-### 3, LLM SFT
+通过以下命令安装 ScienceWorld 游戏环境：
+
+```bash
+pip install scienceworld
+```
+
+### 3. LLM 微调训练（SFT）🧠
+
+运行以下脚本开始模型训练：
 
 ```bash
 bash training/scripts/train_mtsft.sh
 ```
 
-在配置好Python解释器之后, 可以运行上述代码进行模型训练.
+确保 Python 环境配置无误后，即可启动训练流程。
 
-### 4, Run ScienceWorld Game
+### 4. 运行 ScienceWorld 游戏 🌍
 
-- 利用vllm 启动api 推理
+* 使用 vLLM 启动模型推理 API：
 
   ```bash
   MODEL_PATH="checkpoint/meta/Llama-3.1-8B-Instruct/aopsft/"
   API_KEY="token-abc123"
   MODEL_NAME="llama"    
   PORT="8003"
-  
+
   vllm serve $MODEL_PATH \
   --dtype auto \
   --served-model-name $MODEL_NAME \
   --port $PORT \
-  --api-key $API_KEY \
+  --api-key $API_KEY
   ```
 
-- 启动游戏并利用LLM进行推理
+* 启动游戏并使用 LLM 进行推理：
 
   ```bash
   python gamerun/sft_run.py $MODEL_NAME $PORT
