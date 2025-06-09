@@ -2,7 +2,7 @@
 
 ## AoPSFT介绍:
 
-![AoPSFT](https://github.com/Sunrepe/AoPSFT/assets/aopsft.png)
+![AoPSFT](https://github.com/Sunrepe/AoPSFT/blob/main/assets/aopsft.png)
 
 1, 思想创新
 
