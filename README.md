@@ -1,10 +1,10 @@
-English/[中文](https://github.com/Sunrepe/AoPSFT/assets/readme_zh.md)
+English/[中文](https://github.com/Sunrepe/AoPSFT/blob/main/assets/readme_zh.md)
 
 ------
 
 ## Introduction to AoPSFT 🚀
 
-![AoPSFT](https://github.com/Sunrepe/AoPSFT/assets/aopsft.png)
+![AoPSFT](https://github.com/Sunrepe/AoPSFT/blob/main/assets/aopsft.png)
 
 1. **Innovative Concepts** 💡
 
